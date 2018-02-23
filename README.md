@@ -1,19 +1,19 @@
 # wx
 基于SringBoot的微信公众号开发框架，并整合图灵API
 
-GitHub:https://github.com/DownRice/wx
-微信公众平台：https://mp.weixin.qq.com/
-微信公众平台开发者文档：https://mp.weixin.qq.com/wiki
+GitHub:https://github.com/DownRice/wx</br>
+微信公众平台：https://mp.weixin.qq.com/</br>
+微信公众平台开发者文档：https://mp.weixin.qq.com/wiki</br>
 
-本文以公众平台测试账号为例描述，正式公众号配置大同小异，参考开发者文档
-一、服务器验证
-1.公众平台配置
+本文以公众平台测试账号为例描述，正式公众号配置大同小异，参考开发者文档</br>
 
-注：在本地开发时，可使用内网穿透工具
+一、服务器验证</br>
+1.公众平台配置</br>
+注：在本地开发时，可使用内网穿透工具</br>
 
-2.验证服务开发
+2.验证服务开发</br>
 
-即提交URL后公众服务器会以GET方式向配置URL发送以上信息，后续开发公众号所接收消息均以POST方式发送至配置URL。
+即提交URL后公众服务器会以GET方式向配置URL发送以上信息，后续开发公众号所接收消息均以POST方式发送至配置URL。</br>
 
 验证过程：
         1）将token、timestamp、nonce三个参数进行字典序排序
