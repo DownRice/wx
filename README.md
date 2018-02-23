@@ -15,28 +15,28 @@ GitHub:https://github.com/DownRice/wx</br>
 
 即提交URL后公众服务器会以GET方式向配置URL发送以上信息，后续开发公众号所接收消息均以POST方式发送至配置URL。</br>
 
-验证过程：
-        1）将token、timestamp、nonce三个参数进行字典序排序
-        2）将三个参数字符串拼接成一个字符串进行sha1加密
-        3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-验证代码：
+验证过程：</br>
+        1）将token、timestamp、nonce三个参数进行字典序排序</br>
+        2）将三个参数字符串拼接成一个字符串进行sha1加密</br>
+        3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信</br>
+验证代码：</br>
 /**
  *
  * @param signature 微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数
  * @param timestamp 时间戳
  * @param nonce     随机数
  * @param echostr   随机字符串
- */
-@RequestMapping(method = RequestMethod.GET)
-@ResponseBody
+ */  
+@RequestMapping(method = RequestMethod.GET)  
+@ResponseBody  
 public String check(@RequestParam(value = "signature")String signature, @RequestParam(value = "timestamp")String timestamp,
-                  @RequestParam(value = "nonce")String nonce, @RequestParam(value = "echostr")String echostr){
+                  @RequestParam(value = "nonce")String nonce, @RequestParam(value = "echostr")String echostr){  
 
     /*
     1）将token、timestamp、nonce三个参数进行字典序排序
     2）将三个参数字符串拼接成一个字符串进行sha1加密
     3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
-     */
+     */  
     String token = WxUtil.TOKEN;
     String[] arr = new String[]{token, timestamp, nonce};
     Arrays.sort(arr);
