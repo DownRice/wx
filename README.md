@@ -5,21 +5,21 @@ GitHub:https://github.com/DownRice/wx</br>
 微信公众平台：https://mp.weixin.qq.com/</br>
 微信公众平台开发者文档：https://mp.weixin.qq.com/wiki</br>
 
-本文以公众平台测试账号为例描述，正式公众号配置大同小异，参考开发者文档</br>
+本文以公众平台测试账号为例描述，正式公众号配置大同小异，参考开发者文档  
 
 一、服务器验证  
 1.公众平台配置  
 注：在本地开发时，可使用内网穿透工具  
 
-2.验证服务开发</br>
+2.验证服务开发  
 
-即提交URL后公众服务器会以GET方式向配置URL发送以上信息，后续开发公众号所接收消息均以POST方式发送至配置URL。</br>
+即提交URL后公众服务器会以GET方式向配置URL发送以上信息，后续开发公众号所接收消息均以POST方式发送至配置URL。  
 
-验证过程：</br>
-        1）将token、timestamp、nonce三个参数进行字典序排序</br>
-        2）将三个参数字符串拼接成一个字符串进行sha1加密</br>
-        3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信</br>
-验证代码：</br>
+验证过程：  
+        1）将token、timestamp、nonce三个参数进行字典序排序  
+        2）将三个参数字符串拼接成一个字符串进行sha1加密  
+        3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信  
+验证代码：  
 /**
  *
  * @param signature 微信加密签名，signature结合了开发者填写的token参数和请求中的timestamp参数、nonce参数
@@ -33,20 +33,20 @@ public String check(@RequestParam(value = "signature")String signature, @Request
                   @RequestParam(value = "nonce")String nonce, @RequestParam(value = "echostr")String echostr){  
 
     /*
-    1）将token、timestamp、nonce三个参数进行字典序排序
-    2）将三个参数字符串拼接成一个字符串进行sha1加密
-    3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+    1）将token、timestamp、nonce三个参数进行字典序排序  
+    2）将三个参数字符串拼接成一个字符串进行sha1加密  
+    3）开发者获得加密后的字符串可与signature对比，标识该请求来源于微信  
      */  
-    String token = WxUtil.TOKEN;
-    String[] arr = new String[]{token, timestamp, nonce};
-    Arrays.sort(arr);
-    String str = StringUtils.join(arr);
-    if(Sha1Util.encode(str).equals(signature)){
-        //返回echostr
-        return echostr;
-    }
-    return "";
-}
+    String token = WxUtil.TOKEN;  
+    String[] arr = new String[]{token, timestamp, nonce};  
+    Arrays.sort(arr);  
+    String str = StringUtils.join(arr);  
+    if(Sha1Util.encode(str).equals(signature)){  
+        //返回echostr  
+        return echostr;  
+    }  
+    return "";  
+}  
 SHA1加密：
 /**
  * Sha1加密工具类
